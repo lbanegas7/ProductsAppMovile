@@ -8,5 +8,38 @@
 </ion-header>
 
 <ion-content>
-
+  
+  <ion-list>
+    <form [formGroup]="formNewProduct">
+      <ion-item>
+        <ion-label position="floating">Nombre del producto</ion-label>
+        <ion-input placeholder="Nombre" formControlName="nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Precio</ion-label>
+        <ion-input placeholder="Precio" type="number" formControlName="precio"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-input placeholder="Descripción"  formControlName="descripcion"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label position="floating">Imagen del producto</ion-label>
+          <ion-button style="display: inline-block; margin-left: auto;" color="secondary"><label for="imgProduct">Cargar imagen</label></ion-button>
+          <input type="file" id="imgProduct" name="imgProduct" accept="image/*" style="display: none;"  (change)="cargarImagenProducto($event)">
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Unidad de medida</ion-label>
+        <ion-input placeholder="ejem: Lb, Kg." formControlName="unidadMedida"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Cantidad en stock</ion-label>
+        <ion-input placeholder="Cantidad" type="number" formControlName="cantidadStock"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Notificar cuando hayan en stock</ion-label>
+        <ion-input placeholder="Cantidad" type="number" formControlName="notificarBajoStock"></ion-input>
+      </ion-item>
+    </form>
+  </ion-list>
 </ion-content>
