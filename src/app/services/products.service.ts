@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +14,9 @@ export class ProductsService {
 
   getAllProducts(){
     return this.firestore.collection('Producto').valueChanges()
+  }
+
+  updateProduct(){
+    this.firestore.collection('Producto')
   }
 }
