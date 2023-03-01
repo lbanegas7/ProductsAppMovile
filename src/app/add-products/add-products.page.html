@@ -7,39 +7,73 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  
+<ion-content class="ion-padding">
   <ion-list>
     <form [formGroup]="formNewProduct">
-      <ion-item>
-        <ion-label position="floating">Nombre del producto</ion-label>
+      <ion-item fill="solid" >
+        <ion-label position="stacked">Nombre del producto*</ion-label>
         <ion-input placeholder="Nombre" formControlName="nombre"></ion-input>
+        <ion-note slot="error" *ngIf="nombre!.touched && nombre!.value == ''">Campo requerido</ion-note>
       </ion-item>
-      <ion-item>
-        <ion-label position="floating">Precio</ion-label>
+      
+      <ion-item >
+        <ion-label position="floating">Precio*</ion-label>
         <ion-input placeholder="Precio" type="number" formControlName="precio"></ion-input>
+        <ion-note slot="error" *ngIf="precio!.touched && precio!.value == ''">Campo requerido</ion-note>
       </ion-item>
-      <ion-item>
-        <ion-label position="floating">Descripción</ion-label>
-        <ion-input placeholder="Descripción"  formControlName="descripcion"></ion-input>
+      
+      <ion-item counter="true">
+        <ion-label position="floating">Descripción*</ion-label>
+        <ion-input  maxlength="50" placeholder="Descripción"  formControlName="descripcion"></ion-input>
+        <ion-note slot="error" *ngIf="descripcion!.touched && descripcion!.value == ''">Campo requerido</ion-note>
       </ion-item>
-      <ion-item>
-          <ion-label position="floating">Imagen del producto</ion-label>
-          <ion-button style="display: inline-block; margin-left: auto;" color="secondary"><label for="imgProduct">Cargar imagen</label></ion-button>
-          <input type="file" id="imgProduct" name="imgProduct" accept="image/*" style="display: none;"  (change)="cargarImagenProducto($event)">
+      
+      <ion-item *ngIf="imagen == '' || imagen==null">
+        <ion-icon name="image-outline"></ion-icon>
+        <p style="margin-left: 5px;">Imagen del producto*</p>
+        <ion-button style="display: inline-block; margin-left: auto;" color="secondary"><label for="imgProduct">Cargar imagen</label></ion-button>
+        <input type="file" id="imgProduct" name="imgProduct" accept="image/*" style="display: none;"  (change)="cargarImagenProducto($event)">
       </ion-item>
-      <ion-item>
-        <ion-label position="floating">Unidad de medida</ion-label>
-        <ion-input placeholder="ejem: Lb, Kg." formControlName="unidadMedida"></ion-input>
+      <ion-item *ngIf="imagen != '' && imagen!=null">
+        <ion-icon name="image-outline"></ion-icon>
+        <p style="margin-left: 5px;">Imagen del producto*</p>
+        <ion-button style="display: inline-block; margin-left: auto;" color="secondary" id='productImg'><ion-icon name="eye-outline" style="color: #fff;"></ion-icon></ion-button>
+        <ion-popover trigger='productImg' side="top" alignment="center" >
+            <ng-template >
+                <div style="width: 50px; height: 50px; position: relative; "><img src={{imagen}} style="position: absolute; width: 100%; object-fit: cover; height: 100%;" alt="productImg"></div>
+            </ng-template>
+        </ion-popover>
       </ion-item>
-      <ion-item>
-        <ion-label position="floating">Cantidad en stock</ion-label>
+      
+      <ion-item counter="true">
+        <ion-label position="floating">Unidad de medida*</ion-label>
+        <ion-input placeholder="ejem: Lb, Kg." formControlName="unidadMedida" maxlength="2"></ion-input>
+        <ion-note slot="error" *ngIf="unidadMedida!.touched && unidadMedida!.value == ''">Campo requerido</ion-note>
+      </ion-item>
+      
+      <ion-item >
+        <ion-label position="floating">Cantidad en stock*</ion-label>
         <ion-input placeholder="Cantidad" type="number" formControlName="cantidadStock"></ion-input>
+        <ion-note slot="error" *ngIf="cantidadStock!.touched && cantidadStock!.value == ''">Campo requerido</ion-note>
       </ion-item>
-      <ion-item>
-        <ion-label position="floating">Notificar cuando hayan en stock</ion-label>
-        <ion-input placeholder="Cantidad" type="number" formControlName="notificarBajoStock"></ion-input>
+
+      <ion-item style="margin-top: 2rem;">
+        <ion-label style="margin-right: 10px;">Notificar bajo stock</ion-label>
+        <ion-radio-group [allowEmptySelection]="true" value="custom-checked" (click)="selectStock()">
+          <ion-radio value="custom"></ion-radio>
+        </ion-radio-group>
+      </ion-item>
+
+      <ion-item *ngIf="viewSelectLowStock" >
+        <ion-label position="floating">Ingrese la cantidad*</ion-label>
+        <ion-input placeholder="Cantidad minima" type="number" formControlName="notificarBajoStock" ></ion-input>
+        <ion-note slot="error" *ngIf="notificarBajoStock!.touched && notificarBajoStock!.value == ''">Campo requerido</ion-note>
+        <ion-note slot="error" *ngIf="notificarBajoStock?.value! > cantidadStock!.value!">Cantidad no valida</ion-note>
       </ion-item>
     </form>
   </ion-list>
+
+  <div class="btnSave">
+    <ion-button color="success" expand="block" (click)="saveProduct()" >Guardar producto</ion-button>
+  </div>
 </ion-content>
