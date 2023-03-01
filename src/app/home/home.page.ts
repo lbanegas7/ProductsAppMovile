@@ -17,8 +17,9 @@ export class HomePage {
   addNewProduct(){
     this.route.navigate(['./add-products'])
   }
-
+  
   closeSession(){
-    console.log('Cerrar sesión');
+    localStorage && localStorage.removeItem('token')
+    this.route.navigate(['./log-in'])
   }
 }
