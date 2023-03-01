@@ -31,13 +31,18 @@ export class LogInPage implements OnInit {
       const { email, password} = this.formLogin.value
       // Verificamos las credenciales
       this.authService.loginUser(email! , password!)
-      .then(userCredencial => {
+      .then((userCredencial:any) => {
+        console.log(userCredencial);
+        if(window.localStorage){
+          localStorage.setItem('token', userCredencial.user._delegate.accessToken)
+        }
         this.loadingLogin.dismiss();
         this.loginError = false;
         this.formLogin.reset();
         this.route.navigate(['./home']);
       })
       .catch(error => {
+        this.loadingLogin.dismiss();
         this.formLogin.reset();
         this.formLogin.clearValidators();
         this.loginError = true;
@@ -56,6 +61,9 @@ export class LogInPage implements OnInit {
     return await loading.present();
   }
 
+  saveToken(token:string){
+
+  }
   get email(){
     return this.formLogin.get('email')
   }

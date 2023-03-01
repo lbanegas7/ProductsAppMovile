@@ -13,11 +13,10 @@
           </ion-item>
           <ion-item>
             <ion-label position="floating">Contraseña</ion-label>
-            <ion-input placeholder="Contraseña" type="password" formControlName="password" autocomplete="off"></ion-input>
+            <ion-input placeholder="Contraseña"  type="password" formControlName="password" autocomplete="off"></ion-input>
           </ion-item>
-          <div class="msjError" style="margin-bottom: 1rem;">
+          <div style="margin-bottom: 1rem; margin-left: 1.1rem; color: #dd142c; font-size: 0.8rem;">
             <span *ngIf="formLogin.invalid && loginError && email?.untouched && password?.untouched">Credenciales invalidas</span>
-            <!-- <span >Credenciales invalidas</span> -->
           </div>
           <ion-button expand="block" color="success" size="default" (click)="login()">Ingresar </ion-button>
         </form>
