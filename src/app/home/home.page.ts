@@ -11,7 +11,7 @@ export class HomePage {
   constructor(private route: Router) {}
 
   viewProducts(){
-    console.log('view products');
+    this.route.navigate(['./products'])
   }
   
   addNewProduct(){
