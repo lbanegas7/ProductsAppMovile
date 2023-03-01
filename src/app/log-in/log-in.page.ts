@@ -32,7 +32,7 @@ export class LogInPage implements OnInit {
       // Verificamos las credenciales
       this.authService.loginUser(email! , password!)
       .then((userCredencial:any) => {
-        console.log(userCredencial);
+        // console.log(userCredencial);
         if(window.localStorage){
           localStorage.setItem('token', userCredencial.user._delegate.accessToken)
         }
