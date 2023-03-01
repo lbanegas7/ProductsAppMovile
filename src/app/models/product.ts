@@ -5,6 +5,6 @@ export interface Product{
     imagen: string,
     unidadMedida: string,
     cantidadStock: number,
-    notificarBajoStock: number,
+    notificarBajoStock?: number,
     estado: string
 }
