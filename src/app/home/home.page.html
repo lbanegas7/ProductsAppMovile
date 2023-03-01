@@ -6,9 +6,22 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-
-  <div id="container">
-    <strong>Hola mundo</strong>
+<ion-content class="ion-padding" [fullscreen]="true">
+  <div class="containerList">
+    <ion-list>
+      <ion-item (click)="viewProducts()">
+        <ion-icon name="add-circle-outline"></ion-icon>
+        <ion-label style="margin-left: 5px;" >Mis productos</ion-label>
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-item>
+      <ion-item (click)="addNewProduct()">
+        <ion-icon name="reader-outline"></ion-icon>
+        <ion-label style="margin-left: 5px;" >Nuevo producto</ion-label>
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div class="contCloseSession">
+    <ion-button fill="clear" expand="block" size="small" style="text-decoration: underline;" (click)="closeSession()">Cerrar sesión</ion-button>
   </div>
 </ion-content>

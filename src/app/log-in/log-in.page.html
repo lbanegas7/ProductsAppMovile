@@ -1,0 +1,30 @@
+<ion-content class="ion-padding" [fullscreen]="true">
+
+  <div class="container">
+    <div class="elementsForm">
+      <div class="titleForm">
+        <h3>Iniciar Sesión</h3>
+      </div>
+      <ion-list>
+        <form [formGroup]="formLogin" >
+          <ion-item>
+            <ion-label position="floating">Correo electronico</ion-label>
+            <ion-input placeholder="ejemplo@products.app" formControlName="email" autocomplete="off" type="email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input placeholder="Contraseña"  type="password" formControlName="password" autocomplete="off"></ion-input>
+          </ion-item>
+          <div style="margin-bottom: 1rem; margin-left: 1.1rem; color: #dd142c; font-size: 0.8rem;">
+            <span *ngIf="formLogin.invalid && loginError && email?.untouched && password?.untouched">Credenciales invalidas</span>
+          </div>
+          <ion-button expand="block" color="success" size="default" (click)="login()">Ingresar </ion-button>
+        </form>
+      </ion-list>
+
+    </div>
+  </div>
+
+</ion-content>
+
+
